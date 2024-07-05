@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
-"""
-Module for to_kv function
-"""
-
-from typing import Union, Tuple
+""" string and int/float to tuple"""
+from typing import Callable, Iterator, Union, Optional, List, Tuple
 
 
 def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     """
-    Return a tuple with a string and the square of an int/float.
-
-    Args:
-        k (str): The string.
-        v (Union[int, float]): The int or float to square.
-
-    Returns:
-        Tuple[str, float]: A tuple containing the string and the square of the int/float.
+    takes a string k and an int OR float v as arguments
     """
-    return (k, float(v ** 2))
+
+    return (k, v**2)
