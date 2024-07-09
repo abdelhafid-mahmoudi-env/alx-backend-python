@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-""" Async basics """
+"""The basics of async"""
 
-from asyncio import Task, create_task
+import asyncio
+from typing import List
 
-wait_random = __import__('0-basic_async_syntax').wait_random
+task_wait_random = __import__('3-tasks').task_wait_random
 
 
-def task_wait_random(max_delay: int) -> Task:
-    """Creates an asyncio task to wait for a random delay."""
-    tsk = create_task(wait_random(max_delay))
-    return tsk
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
+    """
+    Spawns task_wait_random n times with the specified max_delay and 
+    returns the list of completed task results as they finish.
+    """
+    tasks = [task_wait_random(max_delay) for _ in range(n)]
+    return [await task for task in asyncio.as_completed(tasks)]
